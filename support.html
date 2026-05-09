@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fill-Timer — Support</title>
+  <style>
+    :root {
+      --night:   #1A1A2E;
+      --gold-1:  #FFE9C7;
+      --gold-2:  #F5C16C;
+      --gold-3:  #E89D2C;
+      --gold-4:  #C97A0A;
+      --ink:     #3A2E1F;
+      --mute:    #8A7C66;
+      --cream:   #FFF8EE;
+      --rule:    #E8DCC4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--night);
+      color: var(--cream);
+      font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      width: 100%;
+      padding: 64px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(180deg, #0d0d1f 0%, var(--night) 100%);
+    }
+
+    .icon {
+      width: 96px; height: 96px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 60%, var(--gold-3) 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 12px 40px rgba(232,157,44,.35);
+    }
+    .icon svg { width: 58px; height: 58px; color: #fff; }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,233,199,.6);
+      text-align: center;
+      max-width: 380px;
+      line-height: 1.6;
+    }
+
+    /* ── LANG SWITCHER ── */
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 24px 24px 0;
+    }
+    .lang-btn {
+      background: rgba(255,233,199,.08);
+      border: 1px solid rgba(255,233,199,.15);
+      color: rgba(255,233,199,.7);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lang-btn:hover,
+    .lang-btn.active {
+      background: var(--gold-3);
+      border-color: var(--gold-3);
+      color: var(--night);
+      font-weight: 600;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      width: 100%;
+      max-width: 680px;
+      padding: 40px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .section {
+      background: rgba(255,233,199,.05);
+      border: 1px solid rgba(255,233,199,.1);
+      border-radius: 20px;
+      padding: 28px 28px;
+    }
+    .section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold-2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section h2 .emoji { font-style: normal; font-size: 20px; }
+
+    .faq-item { margin-bottom: 20px; }
+    .faq-item:last-child { margin-bottom: 0; }
+    .faq-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold-1);
+      margin-bottom: 6px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: rgba(255,233,199,.65);
+      line-height: 1.65;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
+      color: var(--night);
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .contact-link:hover { opacity: .85; }
+
+    .privacy p {
+      font-size: 14px;
+      color: rgba(255,233,199,.55);
+      line-height: 1.7;
+    }
+    .privacy p + p { margin-top: 10px; }
+
+    /* ── FOOTER ── */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: rgba(255,233,199,.25);
+      border-top: 1px solid rgba(255,233,199,.06);
+    }
+
+    /* hidden sections */
+    .lang-section { display: none; }
+    .lang-section.active { display: contents; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="icon">
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor"
+         stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="14" y1="8" x2="50" y2="8"/>
+      <line x1="14" y1="56" x2="50" y2="56"/>
+      <path d="M18 8 C 18 22, 32 28, 32 32 C 32 36, 18 42, 18 56"/>
+      <path d="M46 8 C 46 22, 32 28, 32 32 C 32 36, 46 42, 46 56"/>
+      <path d="M22 56 C 24 48, 28 44, 32 44 C 36 44, 40 48, 42 56 Z"
+            fill="currentColor" stroke="none"/>
+      <circle cx="32" cy="38" r="1.2" fill="currentColor" stroke="none"/>
+    </svg>
+  </div>
+  <h1>Fill-Timer</h1>
+  <p id="hero-sub">A timer that fills up — support &amp; help</p>
+</div>
+
+<!-- LANG SWITCHER -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">English</button>
+  <button class="lang-btn" onclick="setLang('zh-TW')">繁體中文</button>
+  <button class="lang-btn" onclick="setLang('zh-CN')">简体中文</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="setLang('fr')">Français</button>
+  <button class="lang-btn" onclick="setLang('es')">Español</button>
+</div>
+
+<!-- ════════════════════════════════════════
+     ENGLISH
+════════════════════════════════════════ -->
+<div class="content">
+<div class="lang-section active" data-lang="en">
+
+  <div class="section">
+    <h2><span class="emoji">❓</span> Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">The timer notification didn't ring when the app was in the background.</div>
+      <div class="faq-a">Go to <strong>Settings → Fill-Timer → Notifications</strong> and make sure notifications are enabled. On iOS, also check that Focus / Do Not Disturb is not blocking alerts.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">I purchased Premium but the themes aren't unlocked.</div>
+      <div class="faq-a">Open the app, go to <strong>Premium</strong>, and tap <strong>Restore Purchases</strong>. Make sure you are signed in with the same Apple ID / Google account used for the purchase.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I cancel the Premium subscription?</div>
+      <div class="faq-a"><strong>iOS:</strong> Settings → Apple ID → Subscriptions → Fill-Timer → Cancel.<br>
+      <strong>Android:</strong> Google Play → Profile → Payments &amp; subscriptions → Subscriptions.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">The Life Clock shows the wrong age.</div>
+      <div class="faq-a">Tap the Life Clock tab, then tap the date to re-enter your birthday. The date is stored only on your device.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I remove ads?</div>
+      <div class="faq-a">Upgrade to Premium in the app. Ads are removed immediately after purchase.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">✉️</span> Contact Support</h2>
+    <p style="font-size:14px;color:rgba(255,233,199,.65);line-height:1.65;">
+      Can't find your answer above? Send us an email and we'll get back to you within 2 business days.
+    </p>
+    <a class="contact-link" href="mailto:646521cal@gmail.com">
+      📧 646521cal@gmail.com
+    </a>
+  </div>
+
+  <div class="section privacy">
+    <h2><span class="emoji">🔒</span> Privacy Policy</h2>
+    <p>Fill-Timer does not collect, store, or transmit any personal data to external servers.</p>
+    <p>Your birthday (used by the Life Clock) is stored locally on your device only and is never shared.</p>
+    <p>Advertising is provided by Google AdMob. AdMob may collect device identifiers in accordance with <a href="https://policies.google.com/privacy" style="color:var(--gold-2);">Google's Privacy Policy</a>. Premium users with ads removed are not subject to ad tracking.</p>
+    <p>We do not sell your data. We do not use analytics SDKs beyond what is required by the App Store / Google Play platforms.</p>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     繁體中文
+════════════════════════════════════════ -->
+<div class="lang-section" data-lang="zh-TW">
+
+  <div class="section">
+    <h2><span class="emoji">❓</span> 常見問題</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">App 在背景時，計時結束沒有收到通知。</div>
+      <div class="faq-a">請前往<strong>設定 → Fill-Timer → 通知</strong>，確認通知已開啟。iOS 使用者請同時確認「專注模式／勿擾模式」沒有封鎖提醒。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">我已購買 Premium，但主題沒有解鎖。</div>
+      <div class="faq-a">開啟 App，前往 <strong>Premium 頁面</strong>，點選「<strong>回復購買</strong>」。請確認使用的是購買時相同的 Apple ID。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">如何取消 Premium 訂閱？</div>
+      <div class="faq-a"><strong>iOS：</strong>設定 → Apple ID → 訂閱 → Fill-Timer → 取消訂閱。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">生命時鐘顯示的日期不對。</div>
+      <div class="faq-a">點選「生命時鐘」分頁，再點選日期重新輸入生日。生日資料僅儲存在您的裝置上，不會上傳至任何伺服器。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">如何移除廣告？</div>
+      <div class="faq-a">在 App 內升級為 Premium，購買完成後廣告將立即消失。</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">✉️</span> 聯絡客服</h2>
+    <p style="font-size:14px;color:rgba(255,233,199,.65);line-height:1.65;">
+      找不到解答？歡迎來信，我們將在 2 個工作日內回覆您。
+    </p>
+    <a class="contact-link" href="mailto:646521cal@gmail.com">
+      📧 646521cal@gmail.com
+    </a>
+  </div>
+
+  <div class="section privacy">
+    <h2><span class="emoji">🔒</span> 隱私權政策</h2>
+    <p>Fill-Timer 不會收集、儲存或傳送任何個人資料至外部伺服器。</p>
+    <p>您在生命時鐘輸入的生日，僅儲存於您的裝置本機，絕不對外分享。</p>
+    <p>廣告由 Google AdMob 提供。AdMob 可能依照 <a href="https://policies.google.com/privacy" style="color:var(--gold-2);">Google 隱私政策</a> 收集裝置識別碼。升級 Premium 並移除廣告的使用者，不受廣告追蹤影響。</p>
+    <p>我們不出售您的資料，也不使用 App Store / Google Play 平台要求以外的分析 SDK。</p>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     简体中文
+════════════════════════════════════════ -->
+<div class="lang-section" data-lang="zh-CN">
+
+  <div class="section">
+    <h2><span class="emoji">❓</span> 常见问题</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">App 在后台时，计时结束没有收到通知。</div>
+      <div class="faq-a">请前往<strong>设置 → Fill-Timer → 通知</strong>，确认通知已开启。iOS 用户请同时确认"专注模式／勿扰模式"没有屏蔽提醒。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">我已购买 Premium，但主题没有解锁。</div>
+      <div class="faq-a">打开 App，前往 <strong>Premium 页面</strong>，点击「<strong>恢复购买</strong>」。请确认使用的是购买时相同的 Apple ID。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">如何取消 Premium 订阅？</div>
+      <div class="faq-a"><strong>iOS：</strong>设置 → Apple ID → 订阅 → Fill-Timer → 取消订阅。<br>
+      <strong>Android：</strong>Google Play → 头像 → 付款和订阅 → 订阅。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">生命时钟显示的日期不对。</div>
+      <div class="faq-a">点击「生命时钟」标签，再点击日期重新输入生日。生日数据仅存储在您的设备上，不会上传至任何服务器。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">如何移除广告？</div>
+      <div class="faq-a">在 App 内升级为 Premium，购买完成后广告将立即消失。</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">✉️</span> 联系客服</h2>
+    <p style="font-size:14px;color:rgba(255,233,199,.65);line-height:1.65;">
+      找不到解答？欢迎来信，我们将在 2 个工作日内回复您。
+    </p>
+    <a class="contact-link" href="mailto:646521cal@gmail.com">
+      📧 646521cal@gmail.com
+    </a>
+  </div>
+
+  <div class="section privacy">
+    <h2><span class="emoji">🔒</span> 隐私政策</h2>
+    <p>Fill-Timer 不会收集、存储或传输任何个人数据至外部服务器。</p>
+    <p>您在生命时钟输入的生日，仅存储于您的设备本地，绝不对外分享。</p>
+    <p>广告由 Google AdMob 提供。AdMob 可能依照 <a href="https://policies.google.com/privacy" style="color:var(--gold-2);">Google 隐私政策</a> 收集设备标识符。升级 Premium 并移除广告的用户，不受广告追踪影响。</p>
+    <p>我们不出售您的数据，也不使用 App Store / Google Play 平台要求以外的分析 SDK。</p>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     日本語
+════════════════════════════════════════ -->
+<div class="lang-section" data-lang="ja">
+
+  <div class="section">
+    <h2><span class="emoji">❓</span> よくある質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">バックグラウンド時に通知が届きませんでした。</div>
+      <div class="faq-a"><strong>設定 → Fill-Timer → 通知</strong> から通知が有効になっているかご確認ください。iOS では「集中モード／おやすみモード」が通知をブロックしていないかもご確認ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Premium を購入しましたが、テーマが解放されません。</div>
+      <div class="faq-a">アプリを開き、<strong>Premium ページ</strong>で「<strong>購入を復元</strong>」をタップしてください。購入時と同じ Apple ID でサインインしているかご確認ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Premium サブスクリプションをキャンセルするには？</div>
+      <div class="faq-a"><strong>iOS：</strong>設定 → Apple ID → サブスクリプション → Fill-Timer → キャンセル。<br>
+      <strong>Android：</strong>Google Play → プロフィール → お支払いと定期購入 → 定期購入。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">ライフクロックの日付が間違っています。</div>
+      <div class="faq-a">「ライフクロック」タブをタップし、日付をタップして誕生日を再入力してください。誕生日はデバイス内にのみ保存され、外部に送信されることはありません。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">広告を非表示にするには？</div>
+      <div class="faq-a">アプリ内で Premium にアップグレードすると、購入後すぐに広告が消えます。</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">✉️</span> サポートへのお問い合わせ</h2>
+    <p style="font-size:14px;color:rgba(255,233,199,.65);line-height:1.65;">
+      上記で解決しない場合は、メールにてお問い合わせください。2 営業日以内にご返信いたします。
+    </p>
+    <a class="contact-link" href="mailto:646521cal@gmail.com">
+      📧 646521cal@gmail.com
+    </a>
+  </div>
+
+  <div class="section privacy">
+    <h2><span class="emoji">🔒</span> プライバシーポリシー</h2>
+    <p>Fill-Timer は、個人データを外部サーバーに収集・保存・送信しません。</p>
+    <p>ライフクロックに入力した誕生日は、デバイス内にのみ保存され、外部と共有されることはありません。</p>
+    <p>広告は Google AdMob によって提供されています。AdMob は <a href="https://policies.google.com/privacy" style="color:var(--gold-2);">Google プライバシーポリシー</a> に従いデバイス識別子を収集する場合があります。Premium 購入後、広告を削除したユーザーは広告トラッキングの対象外となります。</p>
+    <p>お客様のデータを販売することはなく、App Store / Google Play が要求する以外の分析 SDK も使用しません。</p>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     Français
+════════════════════════════════════════ -->
+<div class="lang-section" data-lang="fr">
+
+  <div class="section">
+    <h2><span class="emoji">❓</span> Questions fréquentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Je n'ai pas reçu de notification quand le minuteur s'est terminé en arrière-plan.</div>
+      <div class="faq-a">Allez dans <strong>Réglages → Fill-Timer → Notifications</strong> et vérifiez que les notifications sont activées. Sur iOS, vérifiez également que le mode Concentration / Ne pas déranger ne bloque pas les alertes.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">J'ai acheté Premium mais les thèmes ne sont pas débloqués.</div>
+      <div class="faq-a">Ouvrez l'application, allez sur la page <strong>Premium</strong> et appuyez sur <strong>Restaurer les achats</strong>. Assurez-vous d'être connecté avec le même identifiant Apple utilisé lors de l'achat.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Comment annuler l'abonnement Premium ?</div>
+      <div class="faq-a"><strong>iOS :</strong> Réglages → Identifiant Apple → Abonnements → Fill-Timer → Annuler.<br>
+      <strong>Android :</strong> Google Play → Profil → Paiements et abonnements → Abonnements.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">L'Horloge de vie affiche une mauvaise date.</div>
+      <div class="faq-a">Appuyez sur l'onglet « Horloge de vie », puis sur la date pour saisir à nouveau votre date de naissance. Ces données sont stockées uniquement sur votre appareil.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Comment supprimer les publicités ?</div>
+      <div class="faq-a">Passez à Premium dans l'application. Les publicités sont supprimées immédiatement après l'achat.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">✉️</span> Contacter le support</h2>
+    <p style="font-size:14px;color:rgba(255,233,199,.65);line-height:1.65;">
+      Vous n'avez pas trouvé votre réponse ? Envoyez-nous un e-mail, nous vous répondrons sous 2 jours ouvrés.
+    </p>
+    <a class="contact-link" href="mailto:646521cal@gmail.com">
+      📧 646521cal@gmail.com
+    </a>
+  </div>
+
+  <div class="section privacy">
+    <h2><span class="emoji">🔒</span> Politique de confidentialité</h2>
+    <p>Fill-Timer ne collecte, ne stocke ni ne transmet aucune donnée personnelle vers des serveurs externes.</p>
+    <p>Votre date de naissance (utilisée par l'Horloge de vie) est stockée uniquement sur votre appareil et n'est jamais partagée.</p>
+    <p>La publicité est fournie par Google AdMob. AdMob peut collecter des identifiants d'appareil conformément à la <a href="https://policies.google.com/privacy" style="color:var(--gold-2);">politique de confidentialité de Google</a>. Les utilisateurs Premium ayant supprimé les publicités ne sont pas soumis au suivi publicitaire.</p>
+    <p>Nous ne vendons pas vos données et n'utilisons aucun SDK d'analyse au-delà de ce qu'exigent l'App Store et Google Play.</p>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     Español
+════════════════════════════════════════ -->
+<div class="lang-section" data-lang="es">
+
+  <div class="section">
+    <h2><span class="emoji">❓</span> Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">No recibí la notificación cuando el temporizador terminó en segundo plano.</div>
+      <div class="faq-a">Ve a <strong>Ajustes → Fill-Timer → Notificaciones</strong> y asegúrate de que las notificaciones estén activadas. En iOS, verifica también que el modo Concentración / No molestar no esté bloqueando las alertas.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Compré Premium pero los temas no se desbloquearon.</div>
+      <div class="faq-a">Abre la app, ve a la página <strong>Premium</strong> y pulsa <strong>Restaurar compras</strong>. Asegúrate de haber iniciado sesión con el mismo Apple ID utilizado en la compra.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">¿Cómo cancelo la suscripción Premium?</div>
+      <div class="faq-a"><strong>iOS:</strong> Ajustes → ID de Apple → Suscripciones → Fill-Timer → Cancelar.<br>
+      <strong>Android:</strong> Google Play → Perfil → Pagos y suscripciones → Suscripciones.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">El Reloj de vida muestra una fecha incorrecta.</div>
+      <div class="faq-a">Pulsa la pestaña «Reloj de vida» y luego la fecha para volver a introducir tu fecha de nacimiento. Estos datos se guardan únicamente en tu dispositivo.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">¿Cómo elimino los anuncios?</div>
+      <div class="faq-a">Actualiza a Premium dentro de la app. Los anuncios desaparecen inmediatamente después de la compra.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="emoji">✉️</span> Contactar soporte</h2>
+    <p style="font-size:14px;color:rgba(255,233,199,.65);line-height:1.65;">
+      ¿No encontraste tu respuesta? Escríbenos un correo y te responderemos en 2 días hábiles.
+    </p>
+    <a class="contact-link" href="mailto:646521cal@gmail.com">
+      📧 646521cal@gmail.com
+    </a>
+  </div>
+
+  <div class="section privacy">
+    <h2><span class="emoji">🔒</span> Política de privacidad</h2>
+    <p>Fill-Timer no recopila, almacena ni transmite ningún dato personal a servidores externos.</p>
+    <p>Tu fecha de nacimiento (utilizada por el Reloj de vida) se almacena únicamente en tu dispositivo y nunca se comparte.</p>
+    <p>La publicidad es proporcionada por Google AdMob. AdMob puede recopilar identificadores de dispositivo de acuerdo con la <a href="https://policies.google.com/privacy" style="color:var(--gold-2);">política de privacidad de Google</a>. Los usuarios Premium que hayan eliminado los anuncios no están sujetos al seguimiento publicitario.</p>
+    <p>No vendemos tus datos ni utilizamos SDKs de análisis más allá de lo que requieren App Store y Google Play.</p>
+  </div>
+
+</div>
+</div><!-- /content -->
+
+<footer>
+  © 2026 Cheng-Hung Lo · Fill-Timer · <a href="mailto:646521cal@gmail.com" style="color:inherit;">646521cal@gmail.com</a>
+</footer>
+
+<script>
+  const heroSubs = {
+    'en':    'A timer that fills up — support &amp; help',
+    'zh-TW': '會填滿的沙漏計時器 — 支援與說明',
+    'zh-CN': '会填满的沙漏计时器 — 支持与帮助',
+    'ja':    '時間を満たすタイマー — サポート',
+    'fr':    'Le minuteur qui se remplit — support &amp; aide',
+    'es':    'El temporizador que se llena — soporte &amp; ayuda',
+  };
+
+  function setLang(lang) {
+    // sections
+    document.querySelectorAll('.lang-section').forEach(el => {
+      el.classList.toggle('active', el.dataset.lang === lang);
+    });
+    // buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
+    });
+    // hero subtitle
+    document.getElementById('hero-sub').innerHTML = heroSubs[lang] || heroSubs['en'];
+    // html lang attr
+    document.documentElement.lang = lang;
+  }
+
+  // Auto-detect browser language
+  (function () {
+    const nav = (navigator.language || 'en').toLowerCase();
+    if (nav.startsWith('zh-tw') || nav.startsWith('zh-hant')) setLang('zh-TW');
+    else if (nav.startsWith('zh'))   setLang('zh-CN');
+    else if (nav.startsWith('ja'))   setLang('ja');
+    else if (nav.startsWith('fr'))   setLang('fr');
+    else if (nav.startsWith('es'))   setLang('es');
+    // else default = en (already active)
+  })();
+</script>
+
+</body>
+</html>
