@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fill-Timer — Privacy Policy</title>
+  <style>
+    :root {
+      --night: #1A1A2E;
+      --gold-1: #FFE9C7;
+      --gold-2: #F5C16C;
+      --gold-3: #E89D2C;
+      --cream: #FFF8EE;
+      --mute: rgba(255,233,199,.55);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--night);
+      color: var(--cream);
+      font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero {
+      width: 100%;
+      padding: 56px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(180deg, #0d0d1f 0%, var(--night) 100%);
+    }
+    .icon {
+      width: 72px; height: 72px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 60%, var(--gold-3) 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(232,157,44,.3);
+    }
+    .icon svg { width: 44px; height: 44px; color: #fff; }
+    .hero h1 {
+      font-size: 26px; font-weight: 700;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { font-size: 13px; color: var(--mute); }
+    .content {
+      width: 100%; max-width: 680px;
+      padding: 36px 24px 80px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .section {
+      background: rgba(255,233,199,.05);
+      border: 1px solid rgba(255,233,199,.1);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .section h2 {
+      font-size: 16px; font-weight: 700;
+      color: var(--gold-2);
+      margin-bottom: 12px;
+    }
+    .section p, .section li {
+      font-size: 14px;
+      color: var(--mute);
+      line-height: 1.75;
+    }
+    .section ul { padding-left: 20px; }
+    .section li { margin-bottom: 6px; }
+    .section p + p { margin-top: 10px; }
+    a { color: var(--gold-2); }
+    .lang-bar {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; padding: 20px 24px 0;
+    }
+    .lang-btn {
+      background: rgba(255,233,199,.08);
+      border: 1px solid rgba(255,233,199,.15);
+      color: rgba(255,233,199,.7);
+      padding: 5px 14px; border-radius: 999px;
+      font-size: 12px; cursor: pointer; transition: all .2s;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      background: var(--gold-3); border-color: var(--gold-3);
+      color: var(--night); font-weight: 600;
+    }
+    .lang-block { display: none; }
+    .lang-block.active { display: contents; }
+    footer {
+      width: 100%; text-align: center; padding: 20px;
+      font-size: 12px; color: rgba(255,233,199,.2);
+      border-top: 1px solid rgba(255,233,199,.06);
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="icon">
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor"
+         stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="14" y1="8" x2="50" y2="8"/>
+      <line x1="14" y1="56" x2="50" y2="56"/>
+      <path d="M18 8 C 18 22, 32 28, 32 32 C 32 36, 18 42, 18 56"/>
+      <path d="M46 8 C 46 22, 32 28, 32 32 C 32 36, 46 42, 46 56"/>
+      <path d="M22 56 C 24 48, 28 44, 32 44 C 36 44, 40 48, 42 56 Z"
+            fill="currentColor" stroke="none"/>
+      <circle cx="32" cy="38" r="1.2" fill="currentColor" stroke="none"/>
+    </svg>
+  </div>
+  <h1>Fill-Timer</h1>
+  <p id="hero-sub">Privacy Policy · Last updated May 2026</p>
+</div>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">English</button>
+  <button class="lang-btn" onclick="setLang('zh-TW')">繁體中文</button>
+  <button class="lang-btn" onclick="setLang('zh-CN')">简体中文</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="setLang('fr')">Français</button>
+  <button class="lang-btn" onclick="setLang('es')">Español</button>
+</div>
+
+<div class="content">
+
+<!-- ENGLISH -->
+<div class="lang-block active" data-lang="en">
+  <div class="section"><h2>Overview</h2>
+    <p>Fill-Timer ("we", "our", "the app") is committed to protecting your privacy. This policy explains what information is collected, how it is used, and your rights.</p>
+    <p>Fill-Timer does <strong>not</strong> collect, store, or transmit personal data to any external server operated by us.</p>
+  </div>
+  <div class="section"><h2>Information Stored Locally</h2>
+    <ul>
+      <li><strong>Birthday</strong> — entered voluntarily in the Life Clock feature. Stored only on your device using iOS/Android system storage. Never transmitted.</li>
+      <li><strong>App preferences</strong> — theme selection, timer settings. Stored locally only.</li>
+    </ul>
+  </div>
+  <div class="section"><h2>Third-Party Services</h2>
+    <p><strong>Google AdMob</strong> — used to display banner advertisements to free users. AdMob may collect device identifiers and usage data to serve relevant ads, subject to <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Users who purchase Premium (ads removed) are not subject to ad data collection.</p>
+    <p><strong>Apple In-App Purchase</strong> — purchase transactions are processed by Apple and subject to <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. We do not receive or store payment information.</p>
+  </div>
+  <div class="section"><h2>Data We Do NOT Collect</h2>
+    <ul>
+      <li>Name, email address, or any identity information</li>
+      <li>Location data</li>
+      <li>Camera or microphone access</li>
+      <li>Contacts or calendar data</li>
+      <li>Health or fitness data</li>
+      <li>Browsing history</li>
+    </ul>
+  </div>
+  <div class="section"><h2>Push Notifications</h2>
+    <p>Fill-Timer requests notification permission solely to alert you when a timer ends. Notification content is generated locally on your device and is not transmitted to any server.</p>
+  </div>
+  <div class="section"><h2>Children's Privacy</h2>
+    <p>Fill-Timer does not knowingly collect any data from children under 13. The app contains advertisements (for free users) which are served by Google AdMob with non-personalized settings.</p>
+  </div>
+  <div class="section"><h2>Contact</h2>
+    <p>Questions about this policy? Email us at <a href="mailto:646521cal@gmail.com">646521cal@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- 繁體中文 -->
+<div class="lang-block" data-lang="zh-TW">
+  <div class="section"><h2>概述</h2>
+    <p>Fill-Timer（「我們」、「本應用程式」）致力於保護您的隱私。本政策說明我們收集哪些資訊、如何使用，以及您的權利。</p>
+    <p>Fill-Timer <strong>不會</strong>向我們營運的任何外部伺服器收集、儲存或傳輸個人資料。</p>
+  </div>
+  <div class="section"><h2>儲存於本機的資訊</h2>
+    <ul>
+      <li><strong>生日</strong> — 在生命時鐘功能中自願輸入。僅使用 iOS/Android 系統儲存在您的裝置上，絕不傳輸。</li>
+      <li><strong>App 偏好設定</strong> — 主題選擇、計時設定，僅儲存於本機。</li>
+    </ul>
+  </div>
+  <div class="section"><h2>第三方服務</h2>
+    <p><strong>Google AdMob</strong> — 用於向免費用戶顯示橫幅廣告。AdMob 可能依據 <a href="https://policies.google.com/privacy">Google 隱私政策</a> 收集裝置識別碼及使用資料。購買 Premium（移除廣告）的使用者不受廣告資料收集影響。</p>
+    <p><strong>Apple 應用程式內購買</strong> — 交易由 Apple 處理，適用 <a href="https://www.apple.com/legal/privacy/">Apple 隱私政策</a>。我們不會收到或儲存付款資訊。</p>
+  </div>
+  <div class="section"><h2>我們不收集的資料</h2>
+    <ul>
+      <li>姓名、電子郵件或任何身份資訊</li>
+      <li>位置資料</li>
+      <li>相機或麥克風存取</li>
+      <li>聯絡人或行事曆資料</li>
+      <li>健康或健身資料</li>
+      <li>瀏覽紀錄</li>
+    </ul>
+  </div>
+  <div class="section"><h2>推播通知</h2>
+    <p>Fill-Timer 僅為了在計時結束時提醒您而請求通知權限。通知內容在您的裝置本機生成，不傳輸至任何伺服器。</p>
+  </div>
+  <div class="section"><h2>兒童隱私</h2>
+    <p>Fill-Timer 不會有意收集 13 歲以下兒童的任何資料。免費版本的廣告由 Google AdMob 以非個人化設定提供。</p>
+  </div>
+  <div class="section"><h2>聯絡我們</h2>
+    <p>對本政策有疑問？請寄信至 <a href="mailto:646521cal@gmail.com">646521cal@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- 简体中文 -->
+<div class="lang-block" data-lang="zh-CN">
+  <div class="section"><h2>概述</h2>
+    <p>Fill-Timer（"我们"、"本应用"）致力于保护您的隐私。本政策说明我们收集哪些信息、如何使用，以及您的权利。</p>
+    <p>Fill-Timer <strong>不会</strong>向我们运营的任何外部服务器收集、存储或传输个人数据。</p>
+  </div>
+  <div class="section"><h2>存储于本地的信息</h2>
+    <ul>
+      <li><strong>生日</strong> — 在生命时钟功能中自愿输入，仅存储在您的设备上，绝不传输。</li>
+      <li><strong>应用偏好设置</strong> — 主题选择、计时设置，仅本地存储。</li>
+    </ul>
+  </div>
+  <div class="section"><h2>第三方服务</h2>
+    <p><strong>Google AdMob</strong> — 用于向免费用户展示横幅广告，适用 <a href="https://policies.google.com/privacy">Google 隐私政策</a>。购买 Premium 的用户不受广告数据收集影响。</p>
+    <p><strong>Apple 应用内购买</strong> — 由 Apple 处理，适用 <a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a>。</p>
+  </div>
+  <div class="section"><h2>我们不收集的数据</h2>
+    <ul>
+      <li>姓名、电子邮件或任何身份信息</li>
+      <li>位置数据 · 相机或麦克风访问</li>
+      <li>联系人或日历数据 · 健康数据 · 浏览历史</li>
+    </ul>
+  </div>
+  <div class="section"><h2>联系我们</h2>
+    <p><a href="mailto:646521cal@gmail.com">646521cal@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- 日本語 -->
+<div class="lang-block" data-lang="ja">
+  <div class="section"><h2>概要</h2>
+    <p>Fill-Timer（「当社」「本アプリ」）はお客様のプライバシーを保護することに努めています。本ポリシーでは、収集する情報、その使用方法、お客様の権利について説明します。</p>
+    <p>Fill-Timer は、当社が運営する外部サーバーに個人データを収集・保存・送信することは<strong>ありません</strong>。</p>
+  </div>
+  <div class="section"><h2>端末内に保存される情報</h2>
+    <ul>
+      <li><strong>誕生日</strong> — ライフクロック機能で任意に入力。端末内にのみ保存され、外部に送信されません。</li>
+      <li><strong>アプリ設定</strong> — テーマ・タイマー設定。端末内にのみ保存。</li>
+    </ul>
+  </div>
+  <div class="section"><h2>第三者サービス</h2>
+    <p><strong>Google AdMob</strong> — 無料ユーザーへの広告配信に使用。<a href="https://policies.google.com/privacy">Google プライバシーポリシー</a>に従いデータが収集される場合があります。Premium 購入後は広告データ収集の対象外となります。</p>
+  </div>
+  <div class="section"><h2>お問い合わせ</h2>
+    <p><a href="mailto:646521cal@gmail.com">646521cal@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- Français -->
+<div class="lang-block" data-lang="fr">
+  <div class="section"><h2>Aperçu</h2>
+    <p>Fill-Timer ne collecte, ne stocke ni ne transmet aucune donnée personnelle vers des serveurs externes que nous exploitons.</p>
+  </div>
+  <div class="section"><h2>Données stockées localement</h2>
+    <ul>
+      <li><strong>Date de naissance</strong> — saisie volontairement dans l'Horloge de vie. Stockée uniquement sur votre appareil, jamais transmise.</li>
+      <li><strong>Préférences</strong> — thème et réglages du minuteur. Stockés localement uniquement.</li>
+    </ul>
+  </div>
+  <div class="section"><h2>Services tiers</h2>
+    <p><strong>Google AdMob</strong> — publicités pour les utilisateurs gratuits, soumises à la <a href="https://policies.google.com/privacy">Politique de confidentialité de Google</a>. Les utilisateurs Premium (sans pub) ne sont pas concernés.</p>
+  </div>
+  <div class="section"><h2>Contact</h2>
+    <p><a href="mailto:646521cal@gmail.com">646521cal@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- Español -->
+<div class="lang-block" data-lang="es">
+  <div class="section"><h2>Resumen</h2>
+    <p>Fill-Timer no recopila, almacena ni transmite datos personales a servidores externos.</p>
+  </div>
+  <div class="section"><h2>Datos almacenados localmente</h2>
+    <ul>
+      <li><strong>Fecha de nacimiento</strong> — introducida voluntariamente en el Reloj de vida. Solo se almacena en tu dispositivo, nunca se transmite.</li>
+      <li><strong>Preferencias</strong> — tema y configuración del temporizador. Solo almacenadas localmente.</li>
+    </ul>
+  </div>
+  <div class="section"><h2>Servicios de terceros</h2>
+    <p><strong>Google AdMob</strong> — anuncios para usuarios gratuitos, sujetos a la <a href="https://policies.google.com/privacy">Política de privacidad de Google</a>. Los usuarios Premium no están sujetos a recopilación de datos publicitarios.</p>
+  </div>
+  <div class="section"><h2>Contacto</h2>
+    <p><a href="mailto:646521cal@gmail.com">646521cal@gmail.com</a></p>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<footer>© 2026 Cheng-Hung Lo · Fill-Timer · <a href="mailto:646521cal@gmail.com" style="color:inherit">646521cal@gmail.com</a></footer>
+
+<script>
+const subs = {
+  'en':'Privacy Policy · Last updated May 2026',
+  'zh-TW':'隱私權政策 · 最後更新 2026 年 5 月',
+  'zh-CN':'隐私政策 · 最后更新 2026 年 5 月',
+  'ja':'プライバシーポリシー · 最終更新 2026年5月',
+  'fr':'Politique de confidentialité · Mise à jour mai 2026',
+  'es':'Política de privacidad · Actualizada mayo 2026',
+};
+function setLang(lang) {
+  document.querySelectorAll('.lang-block').forEach(el =>
+    el.classList.toggle('active', el.dataset.lang === lang));
+  document.querySelectorAll('.lang-btn').forEach(btn =>
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`)));
+  document.getElementById('hero-sub').textContent = subs[lang] || subs['en'];
+  document.documentElement.lang = lang;
+}
+(function(){
+  const n = (navigator.language||'en').toLowerCase();
+  if(n.startsWith('zh-tw')||n.startsWith('zh-hant')) setLang('zh-TW');
+  else if(n.startsWith('zh')) setLang('zh-CN');
+  else if(n.startsWith('ja')) setLang('ja');
+  else if(n.startsWith('fr')) setLang('fr');
+  else if(n.startsWith('es')) setLang('es');
+})();
+</script>
+</body>
+</html>
